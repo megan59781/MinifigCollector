@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart';
 
-class MyUniversalQrPage extends StatefulWidget {
-  const MyUniversalQrPage({super.key, required this.title});
+class QrScanner extends StatefulWidget {
+  const QrScanner({super.key, required this.title, required this.data});
 
   final String title;
+  final Map<String, List<String>> data;
 
   @override
-  State<MyUniversalQrPage> createState() => _MyUniversalQrPageState();
+  State<QrScanner> createState() => _QrScannerState();
 }
 
-class _MyUniversalQrPageState extends State<MyUniversalQrPage> {
+class _QrScannerState extends State<QrScanner> {
   String? scannedCode;
   String? matchedMinifigure;
   bool dataLoaded = false;
 
-  // loaded codes from assets/codes
   Map<String, List<String>> figureToCodes = {};
   Map<String, String> codeToMinifigure = {};
 
@@ -27,40 +25,26 @@ class _MyUniversalQrPageState extends State<MyUniversalQrPage> {
     loadMinifigureData();
   }
 
-  Future<void> loadMinifigureData() async {
-    final List<String> assetPaths = [
-      'assets/codes/series25.json',
-      'assets/codes/series26.json',
-      'assets/codes/series27.json',
-      'assets/codes/f1.json',
-    ];
+  void loadMinifigureData() {
+    widget.data.forEach((figure, codes) {
+      List<String> codeList = List<String>.from(codes);
+      if (figureToCodes.containsKey(figure)) {
+        figureToCodes[figure]!.addAll(codeList);
+      } else {
+        figureToCodes[figure] = codeList;
+      }
 
-    for (String path in assetPaths) {
-      final String jsonStr = await rootBundle.loadString(path);
-      final Map<String, dynamic> jsonMap = json.decode(jsonStr);
-
-      jsonMap.forEach((figure, codes) {
-        List<String> codeList = List<String>.from(codes);
-        if (figureToCodes.containsKey(figure)) {
-          figureToCodes[figure]!.addAll(codeList);
-        } else {
-          figureToCodes[figure] = codeList;
-        }
-
-        for (String code in codeList) {
-          codeToMinifigure[code] = figure;
-        }
-      });
-    }
-
-    print("Loaded codes: $codeToMinifigure");
+      for (String code in codeList) {
+        codeToMinifigure[code] = figure;
+      }
+    });
 
     setState(() {
       dataLoaded = true;
     });
   }
 
-  // function that handles barcode detection
+  // Function that handles barcode detection
   void _onDetect(BarcodeCapture capture) {
     if (!dataLoaded) return;
 

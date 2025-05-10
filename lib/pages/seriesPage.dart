@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:minifig_collector_app/figureFilterPage.dart';
+import 'package:minifig_collector_app/pages/figureFilterPage.dart';
 
 class MySeriesPage extends StatefulWidget {
   const MySeriesPage({super.key, required this.title});

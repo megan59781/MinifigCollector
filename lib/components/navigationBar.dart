@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:minifig_collector_app/seriesPage.dart';
+import 'package:minifig_collector_app/pages/seriesPage.dart';
 import 'package:minifig_collector_app/page3.dart';
-import 'package:minifig_collector_app/universalQrPage.dart';
+import 'package:minifig_collector_app/pages/universalQrPage.dart';
 
 // Define WorkerNavigationBar widget
 class MyNavigationBar extends StatefulWidget {
