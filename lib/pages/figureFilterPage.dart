@@ -46,7 +46,9 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(
+          title: Text(widget.title),
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary),
       body: Column(
         children: [
           Expanded(

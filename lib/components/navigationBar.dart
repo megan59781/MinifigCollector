@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:minifig_collector_app/pages/seriesPage.dart';
-import 'package:minifig_collector_app/page3.dart';
 import 'package:minifig_collector_app/pages/universalQrPage.dart';
 
 class MyNavigationBar extends StatefulWidget {
@@ -22,14 +21,16 @@ class MyNavigationBarState extends State<MyNavigationBar> {
 
   // Page widget options
   static List<Widget> _widgetOptions() => [
-        // const Page3(
-        //   title: 'Page 3',
-        // ),
+        const MySeriesPage(
+          title: 'Owned Figures Series',
+          pageLink: 'Inventory',
+        ),
         const MyUniversalQrPage(
           title: 'Universal Minifigure QR Scanner',
         ),
         const MySeriesPage(
           title: 'Mini Figure Series',
+          pageLink: 'Filter',
         )
       ];
 
@@ -48,10 +49,10 @@ class MyNavigationBarState extends State<MyNavigationBar> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.calendar_month_outlined),
-          //   label: 'Availability', //Page3
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory_outlined),
+            label: 'Owned Figures', //Page3
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code_2_outlined),
             label: 'Universal Qr Scanner', //UniversalQrPage
