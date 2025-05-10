@@ -5,10 +5,13 @@ import 'package:flutter/services.dart' show rootBundle;
 class SeriesList extends StatefulWidget {
   const SeriesList({
     super.key,
+    required this.pageLink,
     required this.onTap,
   });
 
-  final void Function(String title, Map<String, List<String>> data) onTap;
+  final String pageLink;
+  final void Function(
+      String pageLink, String title, Map<String, List<String>> data) onTap;
 
   @override
   State<SeriesList> createState() => _SeriesListState();
@@ -62,7 +65,7 @@ class _SeriesListState extends State<SeriesList> {
           margin: const EdgeInsets.all(8),
           child: ListTile(
             title: Text(file.name),
-            onTap: () => widget.onTap(file.name, file.data),
+            onTap: () => widget.onTap(widget.pageLink, file.name, file.data),
           ),
         );
       },

@@ -15,8 +15,9 @@ class MySeriesPage extends StatelessWidget {
           title: Text(title),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary),
       body: SeriesList(
-        onTap: (title, data) {
-          if (title.contains('Filter')) {
+        pageLink: pageLink,
+        onTap: (pageLink, title, data) {
+          if (pageLink.contains('Filter')) {
             Navigator.push(
               context,
               MaterialPageRoute(
