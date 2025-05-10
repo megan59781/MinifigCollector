@@ -22,11 +22,8 @@ class _MySeriesPageState extends State<MySeriesPage> {
   }
 
   Future<void> _loadFiles() async {
-    print("Loading files...");
     final indexJson = await rootBundle.loadString('assets/codes/index.json');
     final List<dynamic> fileList = json.decode(indexJson);
-    print("indexJson: $indexJson");
-    print("fileList: $fileList");
 
     List<_JsonFile> files = [];
     for (final item in fileList) {
@@ -58,13 +55,13 @@ class _MySeriesPageState extends State<MySeriesPage> {
         title: Text(widget.title),
       ),
       body: _files.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: _files.length,
               itemBuilder: (context, index) {
                 final file = _files[index];
                 return Card(
-                  margin: EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
                   child: ListTile(
                     title: Text(file.name),
                     //subtitle: Text(jsonEncode(file.data)),

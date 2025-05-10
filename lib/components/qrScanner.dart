@@ -63,8 +63,6 @@ class _QrScannerState extends State<QrScanner> {
 
     if (value != null) {
       final firstCode = value.split(' ').first.trim();
-      print('Raw QR value: $value');
-      print('First extracted code: "$firstCode"');
 
       if (firstCode != scannedCode) {
         // Check if the scanned code is in the blocked list
@@ -93,16 +91,6 @@ class _QrScannerState extends State<QrScanner> {
       }
     }
   }
-
-  // String _getMatchResult(String code) {
-  //   bool isBlocked = false;
-  //   widget.data.forEach((name, codes) {
-  //     if (codes.contains(code)) {
-  //       isBlocked = true;
-  //     }
-  //   });
-
-  // }
 
   @override
   Widget build(BuildContext context) {

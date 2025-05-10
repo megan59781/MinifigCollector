@@ -17,9 +17,9 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
   @override
   void initState() {
     super.initState();
-    widget.data.keys.forEach((key) {
+    for (var key in widget.data.keys) {
       _checkedItems[key] = false; // Initially unchecked
-    });
+    }
   }
 
   // Navigate to QR scanner and handle the scanning process
@@ -30,8 +30,6 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
         blockedCodes.addAll(widget.data[key]!);
       }
     });
-
-    print("Blocked Codes: $blockedCodes");
 
     Navigator.push(
       context,
@@ -73,9 +71,8 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-              onPressed:
-                  _navigateToScanner, // Open QR scanner when button is pressed
-              child: Text('Open Scanner'),
+              onPressed: _navigateToScanner,
+              child: const Text('Check QR Codes'),
             ),
           ),
         ],

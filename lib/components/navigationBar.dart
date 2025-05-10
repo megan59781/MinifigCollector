@@ -3,7 +3,6 @@ import 'package:minifig_collector_app/pages/seriesPage.dart';
 import 'package:minifig_collector_app/page3.dart';
 import 'package:minifig_collector_app/pages/universalQrPage.dart';
 
-// Define WorkerNavigationBar widget
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({super.key});
 
@@ -34,7 +33,6 @@ class MyNavigationBarState extends State<MyNavigationBar> {
         )
       ];
 
-  // It updates the selected index and triggers a rebuild of the widget.
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -43,7 +41,6 @@ class MyNavigationBarState extends State<MyNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    // Build the Scaffold widget
     return Scaffold(
       body: Center(
         child: _widgetOptions()[_selectedIndex],
@@ -61,7 +58,7 @@ class MyNavigationBarState extends State<MyNavigationBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.verified_outlined),
-            label: 'Mini Fig Filter', //Page2
+            label: 'Mini Fig Filter', //SeriesPage
           )
         ],
         currentIndex: _selectedIndex,
