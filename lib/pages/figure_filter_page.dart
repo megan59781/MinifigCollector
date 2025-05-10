@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minifig_collector_app/components/qrScanner.dart';
+import 'package:minifig_collector_app/components/qr_scanner.dart';
 
 class FigureFilterPage extends StatefulWidget {
   final String title;

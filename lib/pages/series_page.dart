@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:minifig_collector_app/components/seriesList.dart';
-import 'package:minifig_collector_app/page3.dart';
-import 'package:minifig_collector_app/pages/figureFilterPage.dart';
+import 'package:minifig_collector_app/components/series_list.dart';
+import 'package:minifig_collector_app/inventory.dart';
+import 'package:minifig_collector_app/pages/figure_filter_page.dart';
 
 class MySeriesPage extends StatelessWidget {
   const MySeriesPage({super.key, required this.title, required this.pageLink});
@@ -35,7 +35,7 @@ class MySeriesPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Page3(title: title),
+                builder: (context) => Inventory(title: title),
               ),
             );
           }

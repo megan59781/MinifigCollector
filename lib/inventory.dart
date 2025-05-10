@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Page3 extends StatefulWidget {
-  const Page3({super.key, required this.title});
+class Inventory extends StatefulWidget {
+  const Inventory({super.key, required this.title});
 
   final String title;
 
   @override
-  State<Page3> createState() => _Page3State();
+  State<Inventory> createState() => _InventoryState();
 }
 
-class _Page3State extends State<Page3> {
+class _InventoryState extends State<Inventory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

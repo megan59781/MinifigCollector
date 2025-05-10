@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:minifig_collector_app/components/qrScanner.dart';
+import 'package:minifig_collector_app/components/qr_scanner.dart';
 
 class MyUniversalQrPage extends StatefulWidget {
   const MyUniversalQrPage({super.key, required this.title});

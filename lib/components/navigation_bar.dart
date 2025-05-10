@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minifig_collector_app/pages/seriesPage.dart';
-import 'package:minifig_collector_app/pages/universalQrPage.dart';
+import 'package:minifig_collector_app/pages/series_page.dart';
+import 'package:minifig_collector_app/pages/universal_qr_page.dart';
 
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minifig_collector_app/components/navigationBar.dart';
+import 'package:minifig_collector_app/components/navigation_bar.dart';
 
 void main() {
   runApp(const MyApp());
