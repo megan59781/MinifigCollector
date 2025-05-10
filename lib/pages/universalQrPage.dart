@@ -70,6 +70,7 @@ class _MyUniversalQrPageState extends State<MyUniversalQrPage> {
             ? QrScanner(
                 title: 'QR Scanner',
                 data: loadedData,
+                showBlockedStatus: false,
               )
             : const CircularProgressIndicator(),
       ),

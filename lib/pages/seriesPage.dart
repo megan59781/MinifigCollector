@@ -34,7 +34,15 @@ class _MySeriesPageState extends State<MySeriesPage> {
       final path = item['path'];
       final content = await rootBundle.loadString(path);
       final Map<String, dynamic> data = json.decode(content);
-      files.add(_JsonFile(name: name, data: data));
+      Map<String, List<String>> transformedData = {};
+      data.forEach((figure, codes) {
+        // Ensure the codes are in a list format
+        if (codes is List) {
+          transformedData[figure] = List<String>.from(codes);
+        }
+      });
+
+      files.add(_JsonFile(name: name, data: transformedData));
     }
 
     setState(() {
@@ -81,7 +89,7 @@ class _MySeriesPageState extends State<MySeriesPage> {
 
 class _JsonFile {
   final String name;
-  final Map<String, dynamic> data;
+  final Map<String, List<String>> data;
 
   _JsonFile({required this.name, required this.data});
 }

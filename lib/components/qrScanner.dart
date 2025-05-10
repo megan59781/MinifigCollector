@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class QrScanner extends StatefulWidget {
-  const QrScanner({super.key, required this.title, required this.data});
+  const QrScanner(
+      {super.key,
+      required this.title,
+      required this.data,
+      this.showDetails = true,
+      this.showBlockedStatus = true,
+      this.blockedData});
 
   final String title;
   final Map<String, List<String>> data;
+  final bool showDetails;
+  final bool showBlockedStatus;
+  final List<String>? blockedData;
 
   @override
   State<QrScanner> createState() => _QrScannerState();
@@ -14,6 +23,7 @@ class QrScanner extends StatefulWidget {
 class _QrScannerState extends State<QrScanner> {
   String? scannedCode;
   String? matchedMinifigure;
+  String? minifigureStatus;
   bool dataLoaded = false;
 
   Map<String, List<String>> figureToCodes = {};
@@ -57,14 +67,42 @@ class _QrScannerState extends State<QrScanner> {
       print('First extracted code: "$firstCode"');
 
       if (firstCode != scannedCode) {
+        // Check if the scanned code is in the blocked list
+        bool isBlocked = false;
+        if (widget.blockedData != null) {
+          for (String blockedCode in widget.blockedData!) {
+            if (firstCode == blockedCode) {
+              isBlocked = true;
+              break;
+            }
+          }
+        }
+
         setState(() {
           scannedCode = firstCode;
           matchedMinifigure =
               codeToMinifigure[firstCode] ?? "Unknown Minifigure";
+          if (isBlocked) {
+            minifigureStatus = 'AVOID - This QR is in the blocked list.';
+          } else if (matchedMinifigure != "Unknown Minifigure") {
+            minifigureStatus = 'BUY - This QR was not blocked.';
+          } else {
+            minifigureStatus = 'DUNNO - This QR is unknown.';
+          }
         });
       }
     }
   }
+
+  // String _getMatchResult(String code) {
+  //   bool isBlocked = false;
+  //   widget.data.forEach((name, codes) {
+  //     if (codes.contains(code)) {
+  //       isBlocked = true;
+  //     }
+  //   });
+
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -97,11 +135,15 @@ class _QrScannerState extends State<QrScanner> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Scanned Code:\n$scannedCode',
-                              textAlign: TextAlign.center),
-                          const SizedBox(height: 10),
-                          Text('Minifigure:\n$matchedMinifigure',
-                              textAlign: TextAlign.center),
+                          if (widget.showDetails) ...[
+                            Text('Scanned Code:\n$scannedCode',
+                                textAlign: TextAlign.center),
+                            const SizedBox(height: 10),
+                            Text('Minifigure:\n$matchedMinifigure',
+                                textAlign: TextAlign.center),
+                          ],
+                          if (widget.showBlockedStatus)
+                            Text('$minifigureStatus')
                         ],
                       ),
               ),
