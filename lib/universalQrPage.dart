@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class MyUniversalQrPage extends StatefulWidget {
   const MyUniversalQrPage({super.key, required this.title});
@@ -13,42 +15,55 @@ class MyUniversalQrPage extends StatefulWidget {
 class _MyUniversalQrPageState extends State<MyUniversalQrPage> {
   String? scannedCode;
   String? matchedMinifigure;
-  late final Map<String, String> codeToMinifigure;
+  bool dataLoaded = false;
 
-  // series 27 codes
-  final Map<String, List<String>> figureToCodes = {
-    'Wolfpack Beastmaster': ['6522993', '6522981', '6522666'],
-    'Hamster Costume Fan': ['6522994', '6522982', '6522667'],
-    'Longboarder': ['6522995', '6522983', '6522668'],
-    'Steampunk Inventor': ['6522996', '6522984', '6522669'],
-    'Cupid': ['6522997', '6522985', '6522670'],
-    'Jetpack Racer': ['6522998', '6522986', '6522671'],
-    'Pirate Quartermaster': ['6522999', '6522987', '6522672'],
-    'Pterodactyl Costume Fan': ['6523000', '6522988', '6522673'],
-    'Telescope Kid': ['6523001', '6522989', '6522674'],
-    'Crazy Cat Lover': ['6523002', '6522990', '6522675'],
-    'Plush Toy Collector': ['6523003', '6522991', '6522676'],
-    'Bogeyman': ['6523004', '6522992', '6522677'],
-  };
+  // loaded codes from assets/codes
+  Map<String, List<String>> figureToCodes = {};
+  Map<String, String> codeToMinifigure = {};
 
   @override
   void initState() {
     super.initState();
-    codeToMinifigure = _reverseFigCodeMap(figureToCodes);
+    loadMinifigureData();
   }
 
-  Map<String, String> _reverseFigCodeMap(Map<String, List<String>> input) {
-    final Map<String, String> reversed = {};
-    input.forEach((minifig, codes) {
-      for (var code in codes) {
-        reversed[code] = minifig;
-      }
+  Future<void> loadMinifigureData() async {
+    final List<String> assetPaths = [
+      'assets/codes/series25.json',
+      'assets/codes/series26.json',
+      'assets/codes/series27.json',
+      'assets/codes/f1.json',
+    ];
+
+    for (String path in assetPaths) {
+      final String jsonStr = await rootBundle.loadString(path);
+      final Map<String, dynamic> jsonMap = json.decode(jsonStr);
+
+      jsonMap.forEach((figure, codes) {
+        List<String> codeList = List<String>.from(codes);
+        if (figureToCodes.containsKey(figure)) {
+          figureToCodes[figure]!.addAll(codeList);
+        } else {
+          figureToCodes[figure] = codeList;
+        }
+
+        for (String code in codeList) {
+          codeToMinifigure[code] = figure;
+        }
+      });
+    }
+
+    print("Loaded codes: $codeToMinifigure");
+
+    setState(() {
+      dataLoaded = true;
     });
-    return reversed;
   }
 
   // function that handles barcode detection
   void _onDetect(BarcodeCapture capture) {
+    if (!dataLoaded) return;
+
     final barcode = capture.barcodes.first;
     final value = barcode.rawValue;
 
