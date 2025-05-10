@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minifig_collector_app/page2.dart';
+import 'package:minifig_collector_app/seriesPage.dart';
 import 'package:minifig_collector_app/page3.dart';
 import 'package:minifig_collector_app/universalQrPage.dart';
 
@@ -29,7 +29,7 @@ class MyNavigationBarState extends State<MyNavigationBar> {
         const MyUniversalQrPage(
           title: 'Universal Minifigure QR Scanner',
         ),
-        const Page2(
+        const MySeriesPage(
           title: 'Page 2',
         )
       ];
