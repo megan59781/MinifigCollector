@@ -30,7 +30,7 @@ class MyNavigationBarState extends State<MyNavigationBar> {
           title: 'Universal Minifigure QR Scanner',
         ),
         const MySeriesPage(
-          title: 'Page 2',
+          title: 'Mini Figure Series',
         )
       ];
 
