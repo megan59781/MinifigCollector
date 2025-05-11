@@ -50,8 +50,8 @@ class MyNavigationBarState extends State<MyNavigationBar> {
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.inventory_outlined),
-            label: 'Owned Figures', //Page3
+            icon: Icon(Icons.inventory_2_outlined),
+            label: 'Owned Figures', //SeriesPage > Inventory
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code_2_outlined),
@@ -59,7 +59,7 @@ class MyNavigationBarState extends State<MyNavigationBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.verified_outlined),
-            label: 'Mini Fig Filter', //SeriesPage
+            label: 'Mini Fig Filter', //SeriesPage > FilterFigures
           )
         ],
         currentIndex: _selectedIndex,

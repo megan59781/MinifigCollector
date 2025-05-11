@@ -105,6 +105,15 @@ class _QrScannerState extends State<QrScanner> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 50),
+            const Text(
+              'Scan the QR code on the bottom of the minifigure box',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 50),
             Expanded(
               flex: 3,
               child: MobileScanner(
@@ -118,16 +127,16 @@ class _QrScannerState extends State<QrScanner> {
               flex: 2,
               child: Center(
                 child: scannedCode == null
-                    ? const Text('Scan the 2D barcode on the LEGO box')
+                    ? const Text('Scan the barcode to reveal')
                     : Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           if (widget.showDetails) ...[
-                            Text('Scanned Code:\n$scannedCode',
-                                textAlign: TextAlign.center),
-                            const SizedBox(height: 10),
-                            Text('Minifigure:\n$matchedMinifigure',
+                            // Text('Scanned Code:\n$scannedCode',
+                            //     textAlign: TextAlign.center),
+                            // const SizedBox(height: 10),
+                            Text('Minifigure: $matchedMinifigure',
                                 textAlign: TextAlign.center),
                           ],
                           if (widget.showBlockedStatus)

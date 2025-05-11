@@ -51,6 +51,16 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary),
       body: Column(
         children: [
+          const SizedBox(height: 20.0),
+          const Text(
+            'Select the figures you don\'t want, then press the button to check if the box is worth buying',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 15.0),
           Expanded(
             child: ListView(
               children: widget.data.entries.map((entry) {
@@ -71,12 +81,13 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: ElevatedButton(
               onPressed: _navigateToScanner,
-              child: const Text('Check QR Codes'),
+              child: const Text('Check Box QR Codes'),
             ),
           ),
+          const SizedBox(height: 20.0),
         ],
       ),
     );

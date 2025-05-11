@@ -50,6 +50,16 @@ class _InventoryState extends State<Inventory> {
       ),
       body: Column(
         children: [
+          const SizedBox(height: 20.0),
+          const Text(
+            'Select the figures you own to keep track of your collection',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 15.0),
           Expanded(
             child: ListView(
               children: widget.data.entries.map((entry) {
