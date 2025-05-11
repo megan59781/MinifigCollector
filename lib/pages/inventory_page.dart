@@ -68,6 +68,7 @@ class _InventoryState extends State<Inventory> {
                   controlAffinity: ListTileControlAffinity.leading,
                   title: Text(name),
                   value: _checkedItems[name] ?? false,
+                  activeColor: Colors.red[700]!,
                   onChanged: (bool? value) {
                     setState(() {
                       _checkedItems[name] = value ?? false;

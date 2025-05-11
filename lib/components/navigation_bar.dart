@@ -63,7 +63,7 @@ class MyNavigationBarState extends State<MyNavigationBar> {
           )
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
+        selectedItemColor: Colors.red[600]!,
         onTap: _onItemTapped,
       ),
     );

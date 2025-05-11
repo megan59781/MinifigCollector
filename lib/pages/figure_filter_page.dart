@@ -71,6 +71,7 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
                   title: Text(name),
                   //subtitle: Text(codes),
                   value: _checkedItems[name],
+                  activeColor: Colors.red[700]!,
                   onChanged: (bool? value) {
                     setState(() {
                       _checkedItems[name] = value ?? false;
