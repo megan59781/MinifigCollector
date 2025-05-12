@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minifig_collector_app/components/qr_scanner.dart';
+import 'package:minifig_collector_app/components/cross_checkbox_list_tile.dart';
 
 class FigureFilterPage extends StatefulWidget {
   final String title;
@@ -65,18 +66,14 @@ class _FigureFilterPageState extends State<FigureFilterPage> {
             child: ListView(
               children: widget.data.entries.map((entry) {
                 final name = entry.key;
-                return CheckboxListTile(
-                  controlAffinity:
-                      ListTileControlAffinity.leading, // Checkbox on the left
-                  title: Text(name),
-                  //subtitle: Text(codes),
-                  value: _checkedItems[name],
-                  activeColor: Colors.red[700]!,
+                return CrossCheckboxListTile(
+                  value: _checkedItems[name] ?? false,
                   onChanged: (bool? value) {
                     setState(() {
                       _checkedItems[name] = value ?? false;
                     });
                   },
+                  title: Text(name),
                 );
               }).toList(),
             ),
