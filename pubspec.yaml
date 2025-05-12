@@ -47,10 +47,9 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:
-  android:
-    adaptive_icon_background: "#D01012"
+  android: true
   ios: true
-  image_path: "assets/icons/baz_icon.png"
+  image_path: "assets/icons/baz_red_bg_icon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
