@@ -47,7 +47,8 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:
-  android: true
+  android:
+    adaptive_icon_background: "#D01012"
   ios: true
   image_path: "assets/icons/baz_icon.png"
 
